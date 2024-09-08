@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
+import { logo, menu, close, logobrykiet } from "../assets";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -99,31 +99,49 @@ const Navbar = () => {
         <ul className="p-2 border-nav w-full flex items-center justify-center">
           <li>
           <Link to="">
-      <div className="h-10 w-32 p-2 m-1 flex">
-        <div className="flex item-center justify-center">Wegiel</div>
+      <div className="flex items-center justify-center h-10 w-32 p-2 m-1 flex">
+        <div className="flex item-center justify-center">Brykiet</div>
+        <ul className="dropdown-menu">
+          <li>
+            <a>Brykiet Eco-Coco</a>
+            </li>
+          <li>
+            <a>Brykiet Pellet Eco-Fire</a>
+            </li>
+          <li>
+            <a>Drewno Kominkowe</a>
+            </li>
+        </ul>
         <h3 className="m-1 flex item-center justify-center">↕</h3>
         </div>
         </Link>
           </li>
           <li>
           <Link to="">
-        <div className="h-10 w-32 p-2 m-1 flex">
-        <div className="flex item-center justify-center">Ciastka</div>
+        <div className="flex items-center justify-center h-10 w-32 p-2 m-1 flex">
+        <div className="flex item-center justify-center">Spożywcze</div>
+        <ul className="dropdown-menu">
+          <li>
+            <a>Happy Cookies</a>
+            </li>
+        </ul>
         <h3 className="m-1 flex item-center justify-center">↕</h3>
         </div>
         </Link>
           </li>
           <li>
           <Link to="">
-        <div className="h-10 w-32 p-2 m-1 flex">
-        <div className="flex item-center justify-center">Pelet</div>
-        </div>
-        </Link>
-          </li>
+        <div className="flex items-center justify-center h-10 w-32 p-2 m-1 flex">
+        <div className="flex item-center justify-center">Transport</div>
+        <ul className="dropdown-menu">
           <li>
-          <Link to="">
-        <div className="h-10 w-32 p-2 m-1 flex">
-        <div className="flex item-center justify-center">Palety</div>
+            <a>Wypożyczalnia busów</a>
+            </li>
+          <li>
+            <a>Euro palety</a>
+            </li>
+        </ul>
+        <h3 className="m-1 flex item-center justify-center">↕</h3>
         </div>
         </Link>
           </li>
