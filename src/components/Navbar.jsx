@@ -101,17 +101,20 @@ const Navbar = () => {
           <Link to="">
       <div className="flex items-center justify-center h-10 w-32 p-2 m-1 flex">
         <div className="flex item-center justify-center">Brykiet</div>
-        <ul className="dropdown-menu">
-          <li>
-            <a>Brykiet Eco-Coco</a>
+        <ul className="dropdown-menu flex justify-center">
+            <li className="flex flex-col items-center justify-center">
+              <a>Brykiet Eco-Coco</a>
+              <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Brykiet Eco-Coco"/>
             </li>
-          <li>
-            <a>Brykiet Pellet Eco-Fire</a>
+            <li className="flex flex-col items-center justify-center">
+              <a>Brykiet Pellet Eco-Fire</a>
+              <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Brykiet Pellet Eco-Fire"/>
             </li>
-          <li>
-            <a>Drewno Kominkowe</a>
+            <li className="flex flex-col items-center justify-center">
+              <a>Drewno Kominkowe</a>
+              <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Drewno Kominkowe"/>
             </li>
-        </ul>
+          </ul>
         <h3 className="m-1 flex item-center justify-center">↕</h3>
         </div>
         </Link>
@@ -120,11 +123,6 @@ const Navbar = () => {
           <Link to="">
         <div className="flex items-center justify-center h-10 w-32 p-2 m-1 flex">
         <div className="flex item-center justify-center">Spożywcze</div>
-        <ul className="dropdown-menu">
-          <li>
-            <a>Happy Cookies</a>
-            </li>
-        </ul>
         <h3 className="m-1 flex item-center justify-center">↕</h3>
         </div>
         </Link>
@@ -133,14 +131,6 @@ const Navbar = () => {
           <Link to="">
         <div className="flex items-center justify-center h-10 w-32 p-2 m-1 flex">
         <div className="flex item-center justify-center">Transport</div>
-        <ul className="dropdown-menu">
-          <li>
-            <a>Wypożyczalnia busów</a>
-            </li>
-          <li>
-            <a>Euro palety</a>
-            </li>
-        </ul>
         <h3 className="m-1 flex item-center justify-center">↕</h3>
         </div>
         </Link>

@@ -14,16 +14,21 @@
 }
 
 .dropdown-menu {
-  align-items: start;
-  justify-content: center;
+  width: 650px;
   display: none;
   background: #0c1129;
   border: 2px solid #cbd5e11a;
+  padding: 10px;
+  text-align: center; /* Wyśrodkowanie zawartości */
 }
-
-.dropdown-menu ul li {
- display: inline-block;
- position: relative;
+.dropdown-menu li {
+  text-align: center;
+  margin: 10px 0;
+}
+.dropdown-menu img {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
 }
 
 .dropdown-menu a {
@@ -41,18 +46,22 @@ ul li ul.dropdown-menu li {
   margin-right: auto;
 }
 
-ul li ul.dropdown-menu {
-  position: absolute;
-  top: 150px;
+ul li {
+  position: relative;
 }
 
-ul li a:hover ul.dropdown-menu {
-  align-items: start;
-  justify-content: center;
-  display: flex;
-  background: #0c1129;
-  border: 2px solid #cbd5e11a;
+ul li ul.dropdown-menu {
+  margin-top: 0;  /* Eliminujemy ewentualną lukę między elementem a submenu */
 }
+
+ul li:hover ul.dropdown-menu {
+  display: -webkit-inline-box;
+  position: absolute;
+  top: 100%;  /* Ustawiamy submenu bezpośrednio pod elementem */
+  left: 0;
+  z-index: 100;  /* Upewniamy się, że submenu jest nad innymi elementami */
+}
+
 
 .hash-span {
 display: none;
