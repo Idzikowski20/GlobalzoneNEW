@@ -107,7 +107,7 @@ const Navbar = () => {
               <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Brykiet Eco-Coco"/>
             </li>
             <li className="flex flex-col items-center justify-center">
-              <a>Brykiet Pellet Eco-Fire</a>
+              <a>Pellet Eco-Fire</a>
               <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Brykiet Pellet Eco-Fire"/>
             </li>
             <li className="flex flex-col items-center justify-center">
@@ -123,6 +123,20 @@ const Navbar = () => {
           <Link to="">
         <div className="flex items-center justify-center h-10 w-32 p-2 m-1 flex">
         <div className="flex item-center justify-center">Spożywcze</div>
+        <ul className="dropdown-menu flex justify-center">
+            <li className="flex flex-col items-center justify-center">
+              <a>Happy Cookies</a>
+              <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Brykiet Eco-Coco"/>
+            </li>
+            <li className="flex flex-col items-center justify-center">
+              <a>Soon..</a>
+              <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Brykiet Pellet Eco-Fire"/>
+            </li>
+            <li className="flex flex-col items-center justify-center">
+              <a>Soon..</a>
+              <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Drewno Kominkowe"/>
+            </li>
+          </ul>
         <h3 className="m-1 flex item-center justify-center">↕</h3>
         </div>
         </Link>
@@ -131,6 +145,20 @@ const Navbar = () => {
           <Link to="">
         <div className="flex items-center justify-center h-10 w-32 p-2 m-1 flex">
         <div className="flex item-center justify-center">Transport</div>
+        <ul className="dropdown-menu flex justify-center">
+            <li className="flex flex-col items-center justify-center">
+              <a>Euro palety</a>
+              <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Brykiet Eco-Coco"/>
+            </li>
+            <li className="flex flex-col items-center justify-center">
+              <a>Soon..</a>
+              <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Brykiet Pellet Eco-Fire"/>
+            </li>
+            <li className="flex flex-col items-center justify-center">
+              <a>Soon..</a>
+              <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Drewno Kominkowe"/>
+            </li>
+          </ul>
         <h3 className="m-1 flex item-center justify-center">↕</h3>
         </div>
         </Link>
@@ -138,6 +166,9 @@ const Navbar = () => {
         </ul>
       </div>
       </nav>
+      {/* <div className="what-we-do-swipe">
+        <p>Swipe</p>
+      </div> */}
     </nav>
   );
 };

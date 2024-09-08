@@ -14,7 +14,7 @@
 }
 
 .dropdown-menu {
-  width: 650px;
+  margin: auto;
   display: none;
   background: #0c1129;
   border: 2px solid #cbd5e11a;
@@ -30,6 +30,10 @@
   margin: 0 auto;
   margin-top: 10px;
 }
+ul li ul.dropdown-menu img {
+  max-width: 100px; /* Dostosowujemy rozmiar obrazków na większych ekranach */
+  height: auto;
+}
 
 .dropdown-menu a {
   display: inline;
@@ -38,30 +42,71 @@ text-align: center;
 }
 
 ul li ul.dropdown-menu li {
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  display:  block;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
+  margin: 10px;
+  flex: 1; /* Elastyczne dopasowanie obrazków */
 }
 
 ul li {
-  position: relative;
+  position: relative; /* Ustawiamy pozycję względną dla elementów menu */
 }
 
 ul li ul.dropdown-menu {
-  margin-top: 0;  /* Eliminujemy ewentualną lukę między elementem a submenu */
-}
-
-ul li:hover ul.dropdown-menu {
-  display: -webkit-inline-box;
   position: absolute;
-  top: 100%;  /* Ustawiamy submenu bezpośrednio pod elementem */
-  left: 0;
-  z-index: 100;  /* Upewniamy się, że submenu jest nad innymi elementami */
+  top: 100%; 
+  left: 50%; 
+  transform: translateX(-50%);
+  z-index: 100;
+  display: none;
+  justify-content: space-around;
+  background: #0c1129;
+  border: 2px solid #cbd5e11a;
+  padding: 10px 20px;
+  flex-wrap: nowrap; /* Bez zawijania na dużych ekranach */
+}
+ul li:hover ul.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Pozycjonowanie bezpośrednio pod głównym elementem menu */
+  left: 50%; /* Przesunięcie submenu na środek względem rodzica */
+  transform: translateX(-50%); /* Wyrównanie centralne */
+  z-index: 100; /* Upewniamy się, że submenu jest nad innymi elementami */
+  display: flex;
+  justify-content: space-around;
+  background: #0c1129;
+  border: 2px solid #cbd5e11a;
+  padding: 10px 20px; /* Opcjonalnie: Dodajemy padding dla estetyki */
 }
 
+/* Media query dla mniejszych ekranów */
+@media (max-width: 768px) {
+  .background-bottom-nav  {
+    display: none !important;
+  }
+  ul li ul.dropdown-menu {
+    display: none;
+    flex-direction: column; /* Przełączamy się na układ pionowy */
+    left: 0;
+    transform: none; /* Usuwamy centrowanie przez transform, bo będzie pełna szerokość */
+    width: 100%; /* Submenu zajmie całą szerokość na małych ekranach */
+    padding: 10px;
+  }
+
+  ul li ul.dropdown-menu li {
+    margin: 5px 0; /* Zmniejszamy marginesy między elementami na mniejszych ekranach */
+  }
+
+  ul li ul.dropdown-menu img {
+    max-width: 80px; /* Zmniejszamy obrazki na mniejszych ekranach */
+    height: auto;
+  }
+}
+
+/* Dodatkowe media queries dla jeszcze mniejszych ekranów */
+@media (max-width: 480px) {
+  ul li ul.dropdown-menu img {
+    max-width: 60px; /* Jeszcze mniejsze obrazki na ekranach poniżej 480px */
+  }
+}
 
 .hash-span {
 display: none;
@@ -176,6 +221,7 @@ display: none;
 }
 
 .background-bottom-nav {
+  display: block;
   background: #0c112952
 }
 
