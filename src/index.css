@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+a {
+  color: #cacaca;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,10 +17,170 @@
   color-scheme: dark;
 }
 
-.hash-span {
-  margin-top: -100px;
-  padding-bottom: 100px;
+.switch {
+  --secondary-container: #3a4b39;
+  --primary: #84da89;
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.7em;
+  height: 1.8em;
+ }
+ 
+ .switch input {
+  display: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
+ }
+ 
+ .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #313033;
+  transition: .2s;
+  border-radius: 30px;
+ }
+ 
+ .slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 20px;
+  left: 0.2em;
+  bottom: 0.2em;
+  background-color: #aeaaae;
+  transition: .4s;
+ }
+ 
+ input:checked + .slider::before {
+  background-color: var(--primary);
+ }
+ 
+ input:checked + .slider {
+  background-color: var(--secondary-container);
+ }
+ 
+ input:focus + .slider {
+  box-shadow: 0 0 1px var(--secondary-container);
+ }
+ 
+ input:checked + .slider:before {
+  transform: translateX(1.9em);
+ }
+
+.nav-mobile {
+  width: 100%;
+  height: 800px;
+  background: #070a18fc;
+  backdrop-filter: blur(10px);
+}
+
+.dropdown-menu {
+  margin: auto;
+  display: none;
+  background: #0c1129;
+  border: 2px solid #cbd5e11a;
+  padding: 10px;
+  text-align: center; /* Wyśrodkowanie zawartości */
+}
+.dropdown-menu li {
+  text-align: center;
+  margin: 10px 0;
+}
+.dropdown-menu img {
   display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+ul li ul.dropdown-menu img {
+  max-width: 100px; /* Dostosowujemy rozmiar obrazków na większych ekranach */
+  height: auto;
+}
+
+.dropdown-menu a {
+  display: inline;
+padding: 20px 25px;
+text-align: center;
+}
+
+ul li ul.dropdown-menu li {
+  text-align: center;
+  margin: 10px;
+  flex: 1; /* Elastyczne dopasowanie obrazków */
+}
+
+ul li {
+  position: relative; /* Ustawiamy pozycję względną dla elementów menu */
+}
+
+ul li ul.dropdown-menu {
+  position: absolute;
+  top: 100%; 
+  left: 50%; 
+  transform: translateX(-50%);
+  z-index: 100;
+  display: none;
+  justify-content: space-around;
+  background: #0c1129;
+  border: 2px solid #cbd5e11a;
+  padding: 10px 20px;
+  flex-wrap: nowrap; /* Bez zawijania na dużych ekranach */
+}
+ul li:hover ul.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Pozycjonowanie bezpośrednio pod głównym elementem menu */
+  left: 50%; /* Przesunięcie submenu na środek względem rodzica */
+  transform: translateX(-50%); /* Wyrównanie centralne */
+  z-index: 100; /* Upewniamy się, że submenu jest nad innymi elementami */
+  display: flex;
+  justify-content: space-around;
+  background: #0c1129;
+  border: 2px solid #cbd5e11a;
+  padding: 10px 20px; /* Opcjonalnie: Dodajemy padding dla estetyki */
+}
+
+/* Media query dla mniejszych ekranów */
+@media (max-width: 768px) {
+  .mobile-hero {
+    top: 80px;
+  }
+  .background-bottom-nav  {
+    display: none !important;
+  }
+  ul li ul.dropdown-menu {
+    display: none;
+    flex-direction: column; /* Przełączamy się na układ pionowy */
+    left: 0;
+    transform: none; /* Usuwamy centrowanie przez transform, bo będzie pełna szerokość */
+    width: 100%; /* Submenu zajmie całą szerokość na małych ekranach */
+    padding: 10px;
+  }
+
+  ul li ul.dropdown-menu li {
+    margin: 5px 0; /* Zmniejszamy marginesy między elementami na mniejszych ekranach */
+  }
+
+  ul li ul.dropdown-menu img {
+    max-width: 80px; /* Zmniejszamy obrazki na mniejszych ekranach */
+    height: auto;
+  }
+}
+
+/* Dodatkowe media queries dla jeszcze mniejszych ekranów */
+@media (max-width: 480px) {
+  ul li ul.dropdown-menu img {
+    max-width: 60px; /* Jeszcze mniejsze obrazki na ekranach poniżej 480px */
+  }
+}
+
+.hash-span {
+display: none;
 }
 
 .black-gradient {
@@ -66,7 +230,11 @@
 }
 
 .bg-primary-dark {
-  background: #070a18d2;
+  background: #070a18d6;
+}
+
+.bg-primary-light {
+  background:#915eff;
 }
 
 .green-text-gradient {
@@ -123,11 +291,17 @@
 }
 
 .bg-primary2 {
-  background: transparent;
+  background: #070a18fc;
+  backdrop-filter: blur(10px);
+}
+
+.bg-primary3 {
+  background:#4f3d7791;
   backdrop-filter: blur(10px);
 }
 
 .background-bottom-nav {
+  display: block;
   background: #0c112952
 }
 
@@ -228,4 +402,153 @@
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
+}
+
+/* From Uiverse.io by Creatlydev */ 
+.button .button-hero{
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--clr);
+  color: #fff;
+  border-radius: 10rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s;
+}
+
+.button__icon-wrapper {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  color: var(--clr);
+  background-color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.button.button-hero:hover {
+  background-color: #000;
+}
+
+.button.button-hero:hover .button__icon-wrapper {
+  color: #000;
+}
+
+.button__icon-svg--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+.button.button-hero:hover .button__icon-svg:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.button.button-hero:hover .button__icon-svg--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}
+
+.button-products {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* From Uiverse.io by satyamchaudharydev */ 
+/* From uiverse.io by @satyamchaudharydev */
+/* removing default style of button */
+
+.form button {
+  border: none;
+  background: none;
+  color: #8b8ba7;
+}
+/* styling of whole input container */
+.form {
+  --timing: 0.3s;
+  --width-of-input: 200px;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #fff;
+  --border-color: #2f2ee9;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg,#fff);
+}
+/* styling of Input */
+.input {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+}
+/* styling of animated border */
+.form:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+/* Hover on Input */
+.form:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+input:focus {
+  outline: none;
+}
+/* here is code of animated border */
+.form:focus-within:before {
+  transform: scale(1);
+}
+/* styling of close button */
+/* == you can click the close button to remove text == */
+.reset {
+  border: none;
+  background: none;
+  opacity: 0;
+  visibility: hidden;
+}
+/* close button shown when typing */
+input:not(:placeholder-shown) ~ .reset {
+  opacity: 1;
+  visibility: visible;
+}
+/* sizing svg icons */
+.form svg {
+  width: 17px;
+  margin-top: 3px;
 }
