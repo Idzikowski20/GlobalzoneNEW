@@ -60,22 +60,26 @@ const Navbar = () => {
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
+        <label class="switch">
+        <input type="checkbox"/>
+        <span class="slider"></span>
+      </label>
         </ul>
 
         <div className='sm:hidden flex flex-1 justify-end items-center'>
           <img
             src={toggle ? close : menu}
             alt='menu'
-            className='w-[28px] h-[28px] object-contain'
+            className='w-[28px] h-[28px] object-contain r-[20px] mr-3'
             onClick={() => setToggle(!toggle)}
           />
 
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+            } nav-mobile p-6 absolute top-20 min-w-[140px] z-10`}
           >
-            <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
+            <ul className='list-none flex justify-start items-start flex-1 flex-col gap-4'>
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
@@ -149,6 +153,7 @@ const Navbar = () => {
             <li className="flex flex-col items-center justify-center">
               <a>Euro palety</a>
               <img className="h-32 w-32 mt-2" src={logobrykiet} alt="Brykiet Eco-Coco"/>
+              <button>Sprawdź</button>
             </li>
             <li className="flex flex-col items-center justify-center">
               <a>Soon..</a>
