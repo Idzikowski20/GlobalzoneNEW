@@ -44,19 +44,18 @@ const Navbar = () => {
           }}
         >
           <img src={logo} alt='logo' className='w-12 h-12 object-contain' />
-          <p className='text-white text-[18px] font-bold cursor-pointer flex '>
-            GlobalZone &nbsp;
-            <span className='sm:block hidden'> | Goods impoter</span>
+          <p className='text-white text-[15px] font-bold cursor-pointer flex '>
+            GlobalZone | Goods impoter&nbsp;
           </p>
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
+        <ul className='list-none hidden sm:flex flex-row gap-4'>
           {navLinks.map((nav) => (
             <li
               key={nav.id}
               className={`${
                 active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              } hover:text-white font-medium cursor-pointer flex justify-center aligh-center text-center`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
@@ -68,8 +67,26 @@ const Navbar = () => {
         type="checkbox"/>
         <span className="slider"></span>
       </label>
-        </ul>
 
+      <div className="languageflag-relative">
+      <div className="languageFlag"><button className="first" >
+        <svg viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="languageIconTitle" stroke="#ffffff" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+        <g id="SVGRepo_iconCarrier"> <title id="languageIconTitle">
+          Language
+          </title> <circle cx="12" cy="12" r="10">
+          </circle> <path strokeLinecap="round" d="M12,22 C14.6666667,19.5757576 16,16.2424242 16,12 C16,7.75757576 14.6666667,4.42424242 12,2 C9.33333333,4.42424242 8,7.75757576 8,12 C8,16.2424242 9.33333333,19.5757576 12,22 Z">
+            </path> <path strokeLinecap="round" d="M2.5 9L21.5 9M2.5 15L21.5 15">
+              </path> 
+              </g></svg>
+              </button><button className="second" onClick={() => changeLanguage('en')} >
+                <img src="https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png"/>
+                </button><button className="third" onClick={() => changeLanguage('pl')}>
+                  <img src="https://cdn.countryflags.com/thumbs/poland/flag-400.png"/></button>
+                  </div>
+      </div>
+
+        </ul>
         <div className='sm:hidden flex flex-1 justify-end items-center'>
           <img
             src={toggle ? close : menu}
