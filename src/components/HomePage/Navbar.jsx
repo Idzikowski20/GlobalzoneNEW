@@ -30,11 +30,11 @@ const Navbar = () => {
     <nav
       className={`${
         styles.paddingX
-      } w-full flex-col border-nav flex items-center fixed top-0 z-20 pt-5 ${
+      } w-full flex-col border-nav flex items-center fixed top-0 z-20 pt-2 ${
        !darkmode ? "bg-primary3" : "bg-primary2"
       }`}
     >
-      <div className='pb-5 w-full flex justify-between items-center max-w-7xl mx-auto'>
+      <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
           to='/'
           className='flex items-center gap-2'

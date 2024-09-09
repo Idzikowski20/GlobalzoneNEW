@@ -147,6 +147,9 @@ ul li:hover ul.dropdown-menu {
 
 /* Media query dla mniejszych ekranów */
 @media (max-width: 768px) {
+  .mobile-hero {
+    top: 80px;
+  }
   .background-bottom-nav  {
     display: none !important;
   }
