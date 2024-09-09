@@ -560,9 +560,10 @@ input:not(:placeholder-shown) ~ .reset {
 }
 
 .languageflag-relative {
-  top: -27px;
+  top: -15px;
   position: relative;
-  left: 40px;
+  left: 27px;
+  padding-right: 10px;
 }
 
 @media (max-width: 991px) {
@@ -584,9 +585,10 @@ input:not(:placeholder-shown) ~ .reset {
   width: 60px;
   display: flex;
   flex-direction: column;
-  transform: scale(0.7);
+  transform: scale(0.8);
   position: absolute;
-  padding: 10px 0 0 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .languageFlag img{
   width:40px;
