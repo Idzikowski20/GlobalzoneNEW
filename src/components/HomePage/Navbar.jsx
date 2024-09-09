@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { styles } from "../styles";
-import { navLinks } from "../constants";
-import { logo, menu, close, logobrykiet } from "../assets";
+import { styles } from "../../styles";
+import { navLinks } from "../../constants";
+import { logo, menu, close, logobrykiet } from "../../assets";
+
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [darkmode, setDarkmode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +31,7 @@ const Navbar = () => {
       className={`${
         styles.paddingX
       } w-full flex-col border-nav flex items-center fixed top-0 z-20 pt-5 ${
-        scrolled ? "bg-primary2" : "bg-transparent"
+       !darkmode ? "bg-primary3" : "bg-primary2"
       }`}
     >
       <div className='pb-5 w-full flex justify-between items-center max-w-7xl mx-auto'>
@@ -60,9 +62,11 @@ const Navbar = () => {
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
-        <label class="switch">
-        <input type="checkbox"/>
-        <span class="slider"></span>
+        <label className="switch">
+        <input
+        onClick={() => setDarkmode(!darkmode)}
+        type="checkbox"/>
+        <span className="slider"></span>
       </label>
         </ul>
 

@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+a {
+  color: #cacaca;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -226,6 +230,10 @@ display: none;
   background: #070a18d6;
 }
 
+.bg-primary-light {
+  background:#915eff;
+}
+
 .green-text-gradient {
   background: #11998e; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -281,6 +289,11 @@ display: none;
 
 .bg-primary2 {
   background: #070a18fc;
+  backdrop-filter: blur(10px);
+}
+
+.bg-primary3 {
+  background:#4f3d7791;
   backdrop-filter: blur(10px);
 }
 
