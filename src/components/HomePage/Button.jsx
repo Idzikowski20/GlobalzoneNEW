@@ -3,7 +3,7 @@ import React from 'react'
 const Button = () => {
   return (
     <button
-  class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
+  class="button-hero bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
   type="button"
 >
   <div
