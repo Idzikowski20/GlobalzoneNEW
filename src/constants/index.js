@@ -47,15 +47,15 @@ const services = [
   },
   {
     title: "Ekologiczny Brykiet | Eco-coco",
-    icon: mobile,
+    icon: web,
   },
   {
     title: "Ekologiczny Pelet | Eco-pelet",
-    icon: backend,
+    icon: web,
   },
   {
     title: "Euro palety | Euro-palets",
-    icon: creator,
+    icon: web,
   },
 ];
 

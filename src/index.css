@@ -104,6 +104,7 @@ ul li ul.dropdown-menu img {
 }
 
 .dropdown-menu a {
+  width: max-content;
   display: inline;
 padding: 20px 25px;
 text-align: center;
@@ -121,7 +122,7 @@ ul li {
 
 ul li ul.dropdown-menu {
   position: absolute;
-  top: 100%; 
+  top: 125%; 
   left: 50%; 
   transform: translateX(-50%);
   z-index: 100;
@@ -129,16 +130,17 @@ ul li ul.dropdown-menu {
   justify-content: space-around;
   width: max-content;
   backdrop-filter: blur(10px);
-  background: #4f3d77e3;
+  background: radial-gradient(
+    ellipse at bottom,
+    rgba(21, 31, 82, 0.123)
+    rgb(12 17 41 / 32%)
+  );
   border: 2px solid #cbd5e11a;
   padding: 10px 20px;
   flex-wrap: nowrap; /* Bez zawijania na dużych ekranach */
 }
 ul li:hover ul.dropdown-menu {
   width: max-content;
-  backdrop-filter: blur(10px);
-  background: #4f3d77e3;
-  border-radius: 40px;
   position: absolute;
   top: 100%; /* Pozycjonowanie bezpośrednio pod głównym elementem menu */
   left: 50%; /* Przesunięcie submenu na środek względem rodzica */
@@ -146,8 +148,8 @@ ul li:hover ul.dropdown-menu {
   z-index: 100; /* Upewniamy się, że submenu jest nad innymi elementami */
   display: flex;
   justify-content: space-around;
-  border: 2px solid #cbd5e11a;
-  padding: 10px 20px; /* Opcjonalnie: Dodajemy padding dla estetyki */
+  border-bottom: 2px solid #cbd5e11a;
+  padding: 10px 10px; /* Opcjonalnie: Dodajemy padding dla estetyki */
 }
 
 /* Media query dla mniejszych ekranów */
@@ -646,4 +648,46 @@ input:not(:placeholder-shown) ~ .reset {
 .languageFlag:hover .third{
   transform:translateY(0px);
   opacity:1
+}
+
+/* From Uiverse.io by zanina-yassine */ 
+.button-nav {
+  position: relative;
+  cursor: pointer;
+  padding: 5px 5px;
+  border: 0;
+  border-radius: 7px;
+  background: radial-gradient(ellipse at bottom, rgb(255 255 255 / 21%) 0%, rgba(11, 21, 30, 0) 45%);
+  color: rgb(255, 255, 255, 0.66);
+  transition: all 1s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.button-nav::before {
+  content: "";
+  width: 70%;
+  height: 1px;
+
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0.2;
+
+  transition: all 1s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.button-nav:hover {
+  color: rgb(255, 255, 255, 1);
+  transform: scale(1.1) translateY(-3px);
+}
+
+.button-nav:hover::before {
+  opacity: 1;
 }
