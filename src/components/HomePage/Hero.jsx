@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { styles } from "../../styles";
+import { slideIn } from "../../utils/motion";
 import Spline from '@splinetool/react-spline';
 import Button from "./Button";
+import { EarthCanvas } from "../canvas";
 
 const Hero = () => {
   return (

@@ -24,6 +24,8 @@ import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+import shiplogistic from "./shiplogistic.png";
+import shiplogistic2 from "./shiplogistic2.png";
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
@@ -35,6 +37,8 @@ import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 
 export {
+  shiplogistic2,
+  shiplogistic,
   pallet,
   cookie,
   pellet,

@@ -198,7 +198,7 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Aodc Serwis",
+    name: "Przydładowy tytuł bloga",
     description:
       "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
     tags: [
@@ -219,7 +219,7 @@ const projects = [
     source_code_link: "https://github.com/",
   },
   {
-    name: "Aodc Sp. z o.o",
+    name: "Przydładowy tytuł bloga",
     description:
       "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
     tags: [
@@ -240,7 +240,7 @@ const projects = [
     source_code_link: "https://github.com/",
   },
   {
-    name: "Globalzone",
+    name: "Przydładowy tytuł bloga",
     description:
       "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
     tags: [

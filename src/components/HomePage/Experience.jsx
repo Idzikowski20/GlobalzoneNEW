@@ -11,6 +11,7 @@ import { styles } from "../../styles";
 import { experiences } from "../../constants";
 import { SectionWrapper } from "../../hoc";
 import { textVariant } from "../../utils/motion";
+import { shiplogistic, shiplogistic2 } from "../../assets";
 
 const ExperienceCard = ({ experience }) => {
   return (
@@ -61,22 +62,65 @@ const Experience = () => {
     <>
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText} text-center`}>
-          Jak zostałem developerem?
+          Poznaj nas.
         </p>
         <h2 className={`${styles.sectionHeadText} text-center`}>
-          Scieżka rozwoju.
+         Kim jesteśmy i czym się zajmujemy?
         </h2>
       </motion.div>
 
       <div className='mt-20 flex flex-col'>
-        <VerticalTimeline>
-          {experiences.map((experience, index) => (
-            <ExperienceCard
-              key={`experience-${index}`}
-              experience={experience}
-            />
-          ))}
-        </VerticalTimeline>
+        <div className="aboutus-card-container">
+        <div className="aboutus-card">
+
+          <div className="w-[100%]">
+          <p className="aboutus-title w-[100%]">GlobalZone – Twoje Źródło Ekologicznych Produktów z Całego Świata</p>
+          </div>
+          <br>
+          </br>
+          <br>
+          </br>
+        <div className="w-[100%]">
+        <p className="aboutus-subtitle w-[100%]">W GlobalZone specjalizujemy się w imporcie najwyższej jakości ekologicznych produktów z różnych zakątków globu.
+           Naszą misją jest dostarczanie naturalnych, zdrowych i przyjaznych środowisku towarów,
+            które wspierają zrównoważony rozwój oraz dobrostan naszych klientów. Współpracujemy z certyfikowanymi producentami,
+             dbając o to, aby każdy produkt w naszej ofercie spełniał najwyższe standardy jakości.</p>
+        </div>
+
+        </div>
+        <div className="aboutus-card-img">
+        <img className="" src={shiplogistic} alt="Brykiet Eco-Coco"/>
+        </div>
+        </div>
+        <div className="aboutus-card-container-mirror">
+        <div className="aboutus-card">
+        
+        <div className="w-[100%]">
+          <p className="aboutus-title w-[100%]">Odkryj Świat Naturalnych Rozwiązań</p>
+          </div>
+          <br>
+          </br>
+          <br>
+          </br>
+        <div className="w-[100%]">
+        <p className="aboutus-subtitle w-[100%]">Od organicznej żywności po naturalne kosmetyki i ekologiczne artykuły codziennego użytku – w GlobalZone wierzymy,
+           że małe kroki ku zdrowszym wyborom mogą zmieniać świat. Poznaj nasze produkty i odkryj,
+            jak możesz przyczynić się do lepszej przyszłości, wybierając ekologiczne rozwiązania.</p>
+        </div>
+
+        </div>
+        <div className="aboutus-card-img">
+        <img className="" src={shiplogistic2} alt="Brykiet Eco-Coco"/>
+        </div>
+        </div>
+        {/* <div className="aboutus-card-container">
+        <div className="aboutus-card">
+        <p>aaaaaaaaaaaa</p>
+        </div>
+        <div className="aboutus-card-img">
+        <img className="" src={shiplogistic} alt="Brykiet Eco-Coco"/>
+        </div>
+        </div> */}
       </div>
     </>
   );
