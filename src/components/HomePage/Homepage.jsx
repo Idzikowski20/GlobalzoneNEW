@@ -1,4 +1,4 @@
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas } from "./";
+import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Blog, StarsCanvas } from "./";
 import React from 'react'
 
 const HomePage = () => {
@@ -11,7 +11,7 @@ const HomePage = () => {
       <About />
       <Experience />
       <Tech />
-      <Works />
+      <Blog />
       <Feedbacks />
       <div className='relative z-0'>
         <Contact />
