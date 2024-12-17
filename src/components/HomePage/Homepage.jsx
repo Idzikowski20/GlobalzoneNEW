@@ -1,9 +1,12 @@
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Blog, StarsCanvas } from "./";
+import { About, Contact, Experience, Hero, Navbar, Tech, StarsCanvas} from "./";
 import React from 'react'
+import Footer from "./Footer";
 
 const HomePage = () => {
   return (
     <div className='relative z-0 bg-primary-dark'>
+      <div className="background-blur"></div>
+      <div className="background-blur2"></div>
       <div>
         <Navbar />
         <Hero />
@@ -11,12 +14,13 @@ const HomePage = () => {
       <About />
       <Experience />
       <Tech />
-      <Blog />
-      <Feedbacks />
+      {/* <Blog /> */}
+      {/* <Feedbacks /> */}
       <div className='relative z-0'>
         <Contact />
         <StarsCanvas />
       </div>
+      <Footer />
     </div>
   )
 }
