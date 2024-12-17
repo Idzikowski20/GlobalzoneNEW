@@ -74,14 +74,14 @@ const Experience = () => {
         <div className="aboutus-card">
 
           <div className="w-[100%]">
-          <p className="aboutus-title w-[100%]">GlobalZone – Twoje Źródło Ekologicznych Produktów z Całego Świata</p>
+          <p className="aboutus-title w-[100%]">Źródło Ekologicznych Produktów z Całego Świata</p>
           </div>
           <br>
           </br>
           <br>
           </br>
         <div className="w-[100%]">
-        <p className="aboutus-subtitle w-[100%]">W GlobalZone specjalizujemy się w imporcie najwyższej jakości ekologicznych produktów z różnych zakątków globu.
+        <p className="aboutus-subtitle w-[100%]">Specjalizujemy się w imporcie najwyższej jakości ekologicznych produktów z różnych zakątków globu.
            Naszą misją jest dostarczanie naturalnych, zdrowych i przyjaznych środowisku towarów,
             które wspierają zrównoważony rozwój oraz dobrostan naszych klientów. Współpracujemy z certyfikowanymi producentami,
              dbając o to, aby każdy produkt w naszej ofercie spełniał najwyższe standardy jakości.</p>
