@@ -1,6 +1,7 @@
 import { About, Contact, Experience, Hero, Navbar, Tech, StarsCanvas} from "./";
 import React from 'react'
 import Footer from "./Footer";
+import Brykiet from "./Brykiet";
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       </div>
       <About />
       <Experience />
+      <Brykiet />
       <Tech />
       {/* <Blog /> */}
       {/* <Feedbacks /> */}
