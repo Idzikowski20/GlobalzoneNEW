@@ -23,6 +23,7 @@ import {
   jobit,
   tripguide,
   threejs,
+  soon,
 } from "../assets";
 
 export const navLinks = [
@@ -43,11 +44,11 @@ export const navLinks = [
 const services = [
   {
     title: "Maślane Ciastka | Happy Cookies",
-    icon: web,
+    icon: soon,
   },
   {
     title: "Ekologiczny Brykiet | Eco-coco",
-    icon: web,
+    icon: soon,
   },
   {
     title: "Ekologiczny Pelet | Eco-pelet",
@@ -55,7 +56,7 @@ const services = [
   },
   {
     title: "Euro palety | Euro-palets",
-    icon: web,
+    icon: soon,
   },
 ];
 

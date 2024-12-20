@@ -64,7 +64,7 @@ const Experience = () => {
         <p className={`${styles.sectionSubText} text-center`}>
           Poznaj nas.
         </p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>
+        <h2 className={`${styles.sectionHeadText} home-title text-center`}>
          Kim jesteśmy i czym się zajmujemy?
         </h2>
       </motion.div>
@@ -74,12 +74,7 @@ const Experience = () => {
         <div className="aboutus-card">
 
           <div className="w-[100%]">
-          <p className="aboutus-title w-[100%]">Źródło Ekologicznych Produktów z Całego Świata</p>
           </div>
-          <br>
-          </br>
-          <br>
-          </br>
         <div className="w-[100%]">
         <p className="aboutus-subtitle w-[100%]">Specjalizujemy się w imporcie najwyższej jakości ekologicznych produktów z różnych zakątków globu.
            Naszą misją jest dostarczanie naturalnych, zdrowych i przyjaznych środowisku towarów,
@@ -96,12 +91,7 @@ const Experience = () => {
         <div className="aboutus-card">
         
         <div className="w-[100%]">
-          <p className="aboutus-title w-[100%]">Odkryj Świat Naturalnych Rozwiązań</p>
           </div>
-          <br>
-          </br>
-          <br>
-          </br>
         <div className="w-[100%]">
         <p className="aboutus-subtitle w-[100%]">Od organicznej żywności po naturalne kosmetyki i ekologiczne artykuły codziennego użytku – w GlobalZone wierzymy,
            że małe kroki ku zdrowszym wyborom mogą zmieniać świat. Poznaj nasze produkty i odkryj,

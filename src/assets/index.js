@@ -26,6 +26,7 @@ import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 import shiplogistic from "./shiplogistic.png";
 import shiplogistic2 from "./shiplogistic2.png";
+import soon from "./soon.png"
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
@@ -72,4 +73,5 @@ export {
   jobit,
   tripguide,
   bonfire,
+  soon,
 };
