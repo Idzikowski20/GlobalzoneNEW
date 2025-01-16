@@ -76,10 +76,8 @@ const Experience = () => {
           <div className="w-[100%]">
           </div>
         <div className="w-[100%]">
-        <p className="aboutus-subtitle w-[100%]">Specjalizujemy się w imporcie najwyższej jakości ekologicznych produktów z różnych zakątków globu.
-           Naszą misją jest dostarczanie naturalnych, zdrowych i przyjaznych środowisku towarów,
-            które wspierają zrównoważony rozwój oraz dobrostan naszych klientów. Współpracujemy z certyfikowanymi producentami,
-             dbając o to, aby każdy produkt w naszej ofercie spełniał najwyższe standardy jakości.</p>
+        <p className="aboutus-subtitle w-[100%]">Specjalizujemy się w imporcie i wprowadzaniu na rynek Nowych, ciekawych produktów. Kładziemy szczególny nacisk na ekologię, 
+          innowacyjność, a przede wszystkim jakość i ciekawą alternatywę dla innych podobnych produktów obecnych na rynku polskim.</p>
         </div>
 
         </div>
@@ -93,9 +91,8 @@ const Experience = () => {
         <div className="w-[100%]">
           </div>
         <div className="w-[100%]">
-        <p className="aboutus-subtitle w-[100%]">Od organicznej żywności po naturalne kosmetyki i ekologiczne artykuły codziennego użytku – w GlobalZone wierzymy,
-           że małe kroki ku zdrowszym wyborom mogą zmieniać świat. Poznaj nasze produkty i odkryj,
-            jak możesz przyczynić się do lepszej przyszłości, wybierając ekologiczne rozwiązania.</p>
+        <p className="aboutus-subtitle w-[100%]">W nasze ofercie znajdą Państwo zarówno Brykiet do grilla, drewno kominkowe, pelet ale również ciastka. Ta szalenie zróżnicowana Paleta produktów dowodzi tylko jak elastycznym i uniwersalnym partnerem biznesowym jesteśmy. Współpracujemy z certyfikowanymi producentami artykułów codziennego użytku
+          produkuwanych poza Polską jak i od rodzimych producentów.</p>
         </div>
 
         </div>

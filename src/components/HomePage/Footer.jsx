@@ -8,23 +8,24 @@ const Footer = () => {
       <div className='footer-container'>
       <div className='footer-logo-container'>
           <img src={logo} alt='logo' className='w-40 h-40 object-contain' />
-          <p>Made by Patryk Idzikowski</p>
+          <Link target="_blank" to="https://www.linkedin.com/in/patrykidzikowski/"><p>Strona stworzona przez <b>Patryk Idzikowski</b></p></Link>
           <p className='all-rights-text'>Global Zone 2024 © All Rights Reserved</p>
+          
         </div> 
 
         <div className='footer-card-container'>
         <div className='footer-card'>
             <Link to='#'>
-            About
+            O nas
             </Link>
             <Link to='#'>
-            Our mission
+            Nasza misja
             </Link>
             <Link to='#'>
-            Privacy Policy
+            Polityka prywatności
             </Link>
             <Link to='#'>
-            Terms of service
+            Warunki usług
             </Link>
         </div>
         </div>
@@ -32,16 +33,13 @@ const Footer = () => {
         <div className='footer-card-container'>
         <div className='footer-card'>
             <Link to='#'>
-            Services
+            Produkty
             </Link>
             <Link to='#'>
-            Products
+            Aplikuj do Global Zone
             </Link>
             <Link to='#'>
-            Join our team
-            </Link>
-            <Link to='#'>
-            Partner with us
+            Współpraca
             </Link>
         </div>
         </div>

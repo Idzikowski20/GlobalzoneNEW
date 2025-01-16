@@ -24,6 +24,7 @@ import {
   tripguide,
   threejs,
   soon,
+  brykiet
 } from "../assets";
 
 export const navLinks = [
@@ -48,15 +49,11 @@ const services = [
   },
   {
     title: "Ekologiczny Brykiet | Eco-coco",
-    icon: soon,
+    icon: brykiet,
   },
   {
-    title: "Ekologiczny Pelet | Eco-pelet",
+    title: "Ekologiczny Pelet | Eco-fire",
     icon: web,
-  },
-  {
-    title: "Euro palety | Euro-palets",
-    icon: soon,
   },
 ];
 

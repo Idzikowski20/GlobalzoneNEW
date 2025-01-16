@@ -16,9 +16,10 @@ const Hero = () => {
           <div className='w-1 sm:h-80 h-40 violet-gradient' />
         </div>
 
+
         <div className="w-21">
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Global<span className='text-[#915EFF]'>Zone</span>
+            Global <span className='text-[#48a9e9]'>Zone</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             Stawiamy na ekologię!<br className='sm:block hidden' />

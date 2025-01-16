@@ -27,6 +27,7 @@ import threejs from "./tech/threejs.svg";
 import shiplogistic from "./shiplogistic.png";
 import shiplogistic2 from "./shiplogistic2.png";
 import soon from "./soon.png"
+import brykiet from "./brykiet.png"
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
@@ -74,4 +75,5 @@ export {
   tripguide,
   bonfire,
   soon,
+  brykiet
 };

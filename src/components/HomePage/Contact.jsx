@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-
 import { styles } from "../../styles";
 import { EarthCanvas } from "../canvas/";
 import { SectionWrapper } from "../../hoc";
@@ -38,9 +37,26 @@ function Contact() {
         variants={slideIn("left", "tween", 0.2, 1)}
         className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
       >
-        <p className={styles.sectionSubText}>Masz sprawę?</p>
-        <h3 className={styles.sectionHeadText}>Kontakt.</h3>
-
+        <div className="contact-info">
+          <p className={styles.sectionSubText}>Masz sprawę?</p>
+          <h3 className={styles.sectionHeadText}>Kontakt.</h3>
+          <br></br>
+          <p className={styles.sectionSubText}>Global Zone SP. Z o. o.<br></br>
+            UL. MICHAŁA KLEOFASA OGIŃSKIEGO 11 / 9
+            <br></br> 03-318 WARSZAWA<br></br><br></br>
+            NIP: 1133098955
+            <br></br>
+            KRS: 0001040092
+            <br></br>
+            REGON: 525568754
+            <br></br>
+            <br></br>
+            Konto mBank: 66114020040000340285440200
+            <br></br>
+            <br></br>
+            info@global-zone.eu
+            </p>
+        </div>
         <form
           onSubmit={sendEmail}
           className='mt-12 flex flex-col gap-8'
@@ -50,7 +66,7 @@ function Contact() {
             <input
               type='email'
               name='email_from'
-              placeholder="Podaj proszę e-mail na który ma odpowiedzieć"
+              placeholder="Podaj proszę e-mail na który mamy odpowiedzieć"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
 
@@ -61,7 +77,7 @@ function Contact() {
               rows={7}
               name='message'
               id="message"
-              placeholder='W jakim sprawie potrzebujesz kontaktu?'
+              placeholder='...'
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
