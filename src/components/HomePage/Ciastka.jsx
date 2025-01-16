@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import { SectionWrapper } from "../../hoc";
-import Brykiet1 from '../../assets/1.png';
-import Brykiet2 from '../../assets/2.png';
-import Brykiet3 from '../../assets/3.png';
-import Brykiet4 from '../../assets/4.png';
-import Brykiet5 from '../../assets/5.png';
-import Brykiet6 from '../../assets/6.png';
-import Brykiet7 from '../../assets/7.png';
-import Brykiet8 from '../../assets/8.png';
-import Brykiet9 from '../../assets/9.png';
-import 'animate.css';
+import cookies1 from '../../assets/10.png'
+import cookies2 from '../../assets/11.png'
+import cookies3 from '../../assets/12.png'
+import cookies4 from '../../assets/13.png'
 import "react-vertical-timeline-component/style.min.css";
+import 'animate.css';
+// import { textVariant } from "../../utils/motion";
+
 
 const Tech = () => {
   const [active, setActive] = useState(false); // Zmieniono typ stanu na `boolean`
@@ -24,7 +22,7 @@ const Tech = () => {
       <div className="brykiet-card mx-auto">
         <img
           className="brykiet-image-top animate__animated animate__backInLeft"
-          src={Brykiet1}
+          src={cookies1}
           alt="Background"
         />
       </div>
@@ -39,7 +37,7 @@ const Tech = () => {
       </div>
 
       <div className={`${active ? "open-container" : "hidden-container"}`}>
-        {[Brykiet2, Brykiet3, Brykiet4, Brykiet5, Brykiet6, Brykiet7, Brykiet8, Brykiet9].map(
+        {[cookies2, cookies3, cookies4].map(
           (image, index) => (
             <div key={index} className="brykiet-card mx-auto">
               <img
