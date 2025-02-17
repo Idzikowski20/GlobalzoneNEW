@@ -14,9 +14,9 @@ import Ciastka from './Ciastka';
 import Cards from './Cards';
 
 export {
+  Navbar,
   HomePage,
   Hero,
-  Navbar,
   About,
   Tech,
   Ciastka,

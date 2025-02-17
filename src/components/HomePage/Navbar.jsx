@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { styles } from "../../styles";
-import { navLinks } from "../../constants";
-import { logo, menu, close, logobrykiet, pellet, bonfire, cookie, pallet } from "../../assets";
+import { logo, menu, close} from "../../assets";
 
 
 const Navbar = () => {
@@ -16,7 +15,7 @@ const Navbar = () => {
       className={`${
         styles.paddingX
       } w-full flex-col border-nav flex items-center fixed top-0 z-20 pt-2 z-index 10 ${
-       !darkmode ? "bg-primary3" : "bg-primary2"
+       !darkmode ? "bg-primary2" : "bg-primary3"
       }`}
     >
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>

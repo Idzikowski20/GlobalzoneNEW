@@ -1,7 +1,4 @@
-import {
-  mobile,
-  backend,
-  creator,
+import { 
   web,
   javascript,
   typescript,
@@ -23,7 +20,7 @@ import {
   jobit,
   tripguide,
   threejs,
-  soon,
+  cookies,
   brykiet
 } from "../assets";
 
@@ -44,16 +41,16 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Maślane Ciastka | Happy Cookies",
-    icon: soon,
-  },
-  {
-    title: "Ekologiczny Brykiet | Eco-coco",
+    title: "Ekologiczny Brykiet  Eco Coco",
     icon: brykiet,
   },
   {
-    title: "Ekologiczny Pelet | Eco-fire",
+    title: "Ekologiczny Pelet  Eco Fire",
     icon: web,
+  },
+  {
+    title: "Maślane Ciastka  Happy Cookies",
+    icon: cookies,
   },
 ];
 

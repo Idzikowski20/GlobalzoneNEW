@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logo.webp'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
@@ -9,15 +9,12 @@ const Footer = () => {
       <div className='footer-logo-container'>
           <img src={logo} alt='logo' className='w-40 h-40 object-contain' />
           <Link target="_blank" to="https://www.linkedin.com/in/patrykidzikowski/"><p>Strona stworzona przez <b>Patryk Idzikowski</b></p></Link>
-          <p className='all-rights-text'>Global Zone 2024 © All Rights Reserved</p>
+          <p className='all-rights-text'>Global Zone 2025 © All Rights Reserved</p>
           
         </div> 
 
         <div className='footer-card-container'>
         <div className='footer-card'>
-            <Link to='#'>
-            O nas
-            </Link>
             <Link to='#'>
             Nasza misja
             </Link>
@@ -36,7 +33,7 @@ const Footer = () => {
             Produkty
             </Link>
             <Link to='#'>
-            Aplikuj do Global Zone
+            Aplikuj do nas
             </Link>
             <Link to='#'>
             Współpraca
