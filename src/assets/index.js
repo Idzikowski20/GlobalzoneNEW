@@ -1,16 +1,10 @@
-import logo from "./logo.svg";
-import backend from "./backend.png";
+import logo from "./logo.webp";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
 import web from "./web.png";
 import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
-import logobrykiet from "./logobrykiet.png"
-import pellet from "./pellet.png"
-import bonfire from "./bonfire.png"
-import pallet from "./pallet.png"
-import cookie from "./cookie.png"
 import css from "./tech/css.png";
 import docker from "./tech/docker.png";
 import figma from "./tech/figma.png";
@@ -26,7 +20,7 @@ import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 import shiplogistic from "./shiplogistic.png";
 import shiplogistic2 from "./shiplogistic2.png";
-import soon from "./soon.png"
+import cookies from "./cookies.png"
 import brykiet from "./brykiet.png"
 
 import meta from "./company/meta.png";
@@ -41,12 +35,7 @@ import tripguide from "./tripguide.png";
 export {
   shiplogistic2,
   shiplogistic,
-  pallet,
-  cookie,
-  pellet,
-  logobrykiet,
   logo,
-  backend,
   creator,
   mobile,
   web,
@@ -73,7 +62,6 @@ export {
   carrent,
   jobit,
   tripguide,
-  bonfire,
-  soon,
+  cookies,
   brykiet
 };

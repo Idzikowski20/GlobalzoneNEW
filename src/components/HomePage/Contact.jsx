@@ -35,7 +35,7 @@ function Contact() {
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
+        className='flex-[0.75] p-8 rounded-2xl'
       >
         <div className="contact-info">
           <p className={styles.sectionSubText}>Masz sprawę?</p>
@@ -66,26 +66,28 @@ function Contact() {
             <input
               type='email'
               name='email_from'
-              placeholder="Podaj proszę e-mail na który mamy odpowiedzieć"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              placeholder="Podaj swój e-mail"
+              className='contact-input py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              required
             />
 
           </label>
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Twoja wiadomość</span>
             <textarea
-              rows={7}
+              rows={6}
               name='message'
               id="message"
               placeholder='...'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className='contact-input py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              required
             />
           </label>
 
           <button
             type='submit'
             variants='contained'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
+            className='contact-input py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
           >
           {loading ? "Wysyłanie..." : "Wyślij"}
           </button>
@@ -94,7 +96,7 @@ function Contact() {
 
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+        className='xl:flex-1 xl:h-auto md:h-[350px] h-[250px]'
       >
         <EarthCanvas />
       </motion.div>

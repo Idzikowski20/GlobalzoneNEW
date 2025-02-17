@@ -76,7 +76,7 @@ const Experience = () => {
           <div className="w-[100%]">
           </div>
         <div className="w-[100%]">
-        <p className="aboutus-subtitle w-[100%]">Specjalizujemy się w imporcie i wprowadzaniu na rynek Nowych, ciekawych produktów. Kładziemy szczególny nacisk na ekologię, 
+        <p className="aboutus-subtitle w-[100%]">Specjalizujemy się w imporcie i wprowadzaniu na rynek nowych, ciekawych produktów. Kładziemy szczególny nacisk na ekologię, 
           innowacyjność, a przede wszystkim jakość i ciekawą alternatywę dla innych podobnych produktów obecnych na rynku polskim.</p>
         </div>
 
@@ -91,7 +91,7 @@ const Experience = () => {
         <div className="w-[100%]">
           </div>
         <div className="w-[100%]">
-        <p className="aboutus-subtitle w-[100%]">W nasze ofercie znajdą Państwo zarówno Brykiet do grilla, drewno kominkowe, pelet ale również ciastka. Ta szalenie zróżnicowana Paleta produktów dowodzi tylko jak elastycznym i uniwersalnym partnerem biznesowym jesteśmy. Współpracujemy z certyfikowanymi producentami artykułów codziennego użytku
+        <p className="aboutus-subtitle w-[100%]">W naszej ofercie znajdą Państwo zarówno Brykiet do grilla, drewno kominkowe, pelet ale również ciastka. Ta szalenie zróżnicowana Paleta produktów dowodzi tylko jak elastycznym i uniwersalnym partnerem biznesowym jesteśmy. Współpracujemy z certyfikowanymi producentami artykułów codziennego użytku
           produkuwanych poza Polską jak i od rodzimych producentów.</p>
         </div>
 

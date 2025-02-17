@@ -15,11 +15,11 @@ const Feedbacks = () => {
       >
       <motion.div variants={textVariant()}>
         <h2 className={`${styles.sectionHeadText} home-title text-center`}>
-         Nasz zespół.
+         Zarząd Global Zone.
         </h2>
       </motion.div>
       </div>
-      <div className="team-container bg-black-100 rounded-[20px]">
+      <div className="team-container rounded-[20px]">
     <div className="team-members">
       <div className="member">
         <img className="member-image" src={Pawel}/>

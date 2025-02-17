@@ -34,7 +34,7 @@ const Tech = () => {
           className="button-rozwin hover-underline "
           onClick={togglePresentation}
         >
-          {active ? " ZAMKNIJ ✖️" : "✔️ OTWÓRZ PREZENTACJE ✔️"}
+          {active ? "✖️ ZAMKNIJ" : "✔️ OTWÓRZ PREZENTACJE"}
         </button>
       </div>
 
