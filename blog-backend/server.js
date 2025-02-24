@@ -4,20 +4,6 @@ const Blog = require("./models/Blog");
 var cors = require('cors')
 const app = express();
 const PORT = 5000;
-import axios from 'axios';
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-});
-
-// Przykład użycia
-api.get('/api/blogs')
-  .then(response => {
-    // Obsługa odpowiedzi
-  })
-  .catch(error => {
-    // Obsługa błędu
-  });
-
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -92,4 +78,4 @@ app.delete("/api/blogs/:id", async (req, res) => {
 });
 
 // Uruchomienie serwera
-app.listen(PORT, () => console.log(`🚀 Serwer działa na http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Serwer działa na https://globalzone-backend.onrender.com`));
