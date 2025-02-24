@@ -1,14 +1,11 @@
 {
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "vite build",
-    "preview": "vite preview",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd blog-backend && node server.js",
-    "client": "vite"
-  },
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview"
+},
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
     "@headlessui/react": "^2.1.5",
