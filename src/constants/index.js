@@ -193,67 +193,65 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Przydładowy tytuł bloga",
+    name: "Brykiet kokosowy - Czy jest ekologiczny?",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Czytaj więcej..",
     tags: [
       {
-        name: "react",
+        name: "Brykiet",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "Lato2025",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "Ekologia",
         color: "pink-text-gradient",
       },
     ],
     image: carrent,
-    source_code_link: "https://github.com/",
   },
   {
-    name: "Przydładowy tytuł bloga",
+    name: "Happy Cookies - Nowość na rynku.",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "Czytaj więcej...",
     tags: [
       {
-        name: "react",
+        name: "Ciastka",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "Slodycze",
         color: "green-text-gradient",
       },
       {
-        name: "scss",
+        name: "HappyCookies",
         color: "pink-text-gradient",
       },
     ],
     image: jobit,
-    source_code_link: "https://github.com/",
   },
   {
-    name: "Przydładowy tytuł bloga",
+    name: "Eco Fire - W czym jest lepszy od zwykłego pelletu?",
     description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+      "Czytan więcej...",
     tags: [
       {
-        name: "nextjs",
+        name: "Pellet",
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "Opal",
         color: "green-text-gradient",
       },
       {
-        name: "css",
+        name: "EcoFire",
         color: "pink-text-gradient",
+        source_code_link: "www.aodc.pl"
       },
     ],
     image: tripguide,
-    source_code_link: "https://github.com/",
   },
 ];
 

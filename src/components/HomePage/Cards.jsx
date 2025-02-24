@@ -22,20 +22,20 @@ function Cards() {
   return (
     <>
       <motion.div>
-            <h2 className={`${styles.sectionHeadText} home-title text-center`}>
-             Prezentacje naszych produktów.
-            </h2>
+            {/* <h2 className={`${styles.sectionHeadText} home-title text-center`}>
+             Prezentacje
+            </h2> */}
       </motion.div>
       <div className='carrier-card-benefit-container'>
         <div className='carrier-card-benefit-buttons'>
           <a onClick={handleTab1} className={activeTab === "tab1" ? "active" : "carrier-card-benefit-button"}>
-            <h4 className="what-we-do-h4">Brykiet</h4>
+            <h4 className="what-we-do-h4">Eco Coco</h4>
           </a>
           <a onClick={handleTab2} className={activeTab === "tab2" ? "active" : "carrier-card-benefit-button"}>
-            <h4 className="what-we-do-h4">Pellet</h4>
+            <h4 className="what-we-do-h4">Eco Fire</h4>
           </a>
           <a onClick={handleTab3} className={activeTab === "tab3" ? "active" : "carrier-card-benefit-button"}>
-            <h4 className="what-we-do-h4">Ciastka</h4>
+            <h4 className="what-we-do-h4">Happy Cookies</h4>
           </a>
         </div>
       </div>

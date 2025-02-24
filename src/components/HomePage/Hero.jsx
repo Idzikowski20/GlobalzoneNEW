@@ -8,7 +8,7 @@ import { StarsCanvas } from "../canvas";
 
 const Hero = () => {
   return (
-    <section className={`relative w-full h-screen mx-auto`}>
+    <section id="home" className={`relative w-full h-screen mx-auto`}>
       <StarsCanvas />
       <div
         className={`mobile-hero pt-10 absolute inset-0 top-[200px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}

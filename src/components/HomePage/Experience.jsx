@@ -92,7 +92,7 @@ const Experience = () => {
           </div>
         <div className="w-[100%]">
         <p className="aboutus-subtitle w-[100%]">W naszej ofercie znajdą Państwo zarówno Brykiet do grilla, drewno kominkowe, pelet ale również ciastka. Ta szalenie zróżnicowana Paleta produktów dowodzi tylko jak elastycznym i uniwersalnym partnerem biznesowym jesteśmy. Współpracujemy z certyfikowanymi producentami artykułów codziennego użytku
-          produkuwanych poza Polską jak i od rodzimych producentów.</p>
+          produkowanych poza Polską jak i od rodzimych producentów.</p>
         </div>
 
         </div>

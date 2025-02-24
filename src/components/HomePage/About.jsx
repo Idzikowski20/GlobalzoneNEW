@@ -38,16 +38,19 @@ const ServiceCard = ({ index, title, icon }) => (
 const About = () => {
   return (
     <>
-      <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Produkty</p>
-        <h2 className={styles.sectionHeadText}>Nasze marki.</h2>
-      </motion.div>
+    <section id="products">
+        <motion.div variants={textVariant()}>
+            <p className={styles.sectionSubText}>Produkty i prezentacje</p>
+            <h2 className={styles.sectionHeadText}>Nasze produkty</h2>
+          </motion.div>
 
-      <div className='justify-center mt-20 flex flex-wrap gap-10'>
-        {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
-        ))}
-      </div>
+          <div className='justify-center mt-20 flex flex-wrap gap-10'>
+            {services.map((service, index) => (
+              <ServiceCard key={service.title} index={index} {...service} />
+            ))}
+          </div>
+    </section>
+      
     </>
   );
 };

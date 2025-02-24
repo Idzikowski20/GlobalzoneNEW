@@ -1,4 +1,4 @@
-import { About, Contact, Experience, Hero, StarsCanvas, Navbar, Team, Cards } from "./";
+import { About, Contact, Experience, Hero, StarsCanvas, Team, Cards, Blog } from "./";
 import React, { useEffect, useRef } from 'react';
 import Footer from "./Footer";
 import Navbar2 from "./Navbar2";
@@ -54,17 +54,16 @@ const HomePage = () => {
   return (
     <div className='selector relative z-0 bg-primary-dark'>
       <div className="bg-parallax bluur-70"></div>
-      <div className="background-blur"></div>
-      <div className="background-blur2"></div>
       <div className='cursor' ref={cursorRef} id="cursor"></div>
       <div className='cursor2' ref={cursor2Ref} id="cursor2"></div>
       <div className='cursor3' ref={cursor3Ref} id="cursor3"></div>
       {/* <Navbar /> */}
       <Navbar2 />
       <Hero />
-      <About />
       <Experience />
+      <About />
       <Cards />
+      <Blog />
       <Team />
       <div className='relative z-0'>
         <Contact />
