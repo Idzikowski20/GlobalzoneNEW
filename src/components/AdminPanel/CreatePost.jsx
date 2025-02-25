@@ -13,21 +13,24 @@ const CreatePost = () => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
-    console.log("➡️ Wysyłane dane:", { title, content, tags: tagsArray, imageFile });
-  
-    const tagsArray = tags.split(",").map((tag) => tag.trim()).filter((tag) => tag !== "");
-  
+
     try {
+      const tagsArray = tags
+        ? tags.split(",").map((tag) => tag.trim()).filter((tag) => tag !== "")
+        : [];
+
+      console.log("➡️ Wysyłane dane:", { title, content, tagsArray, imageFile });
+
       const formData = new FormData();
       formData.append("title", title);
       formData.append("content", content);
       formData.append("tags", JSON.stringify(tagsArray)); // ✅ Stringify tags
       if (imageFile) formData.append("image", imageFile); // ✅ Plik z nazwą "image"
-  
+
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/blogs`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-  
+
       setMessage("✅ Post utworzony pomyślnie!");
       setTitle("");
       setContent("");

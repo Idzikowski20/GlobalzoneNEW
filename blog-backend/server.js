@@ -25,7 +25,7 @@ mongoose.connection.once("open", () => console.log("✅ Połączono z MongoDB"))
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "uploads/"),
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
   },
 });
@@ -36,36 +36,34 @@ const deleteFile = (filePath) => {
   if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
 };
 
-// 🌍 Strona główna
-app.get("/", (req, res) => res.send("Witaj na mojej aplikacji!"));
-
-// 📄 Pobieranie wszystkich blogów
+// 📝 Tworzenie posta (z przesyłaniem pliku)
 app.post("/api/blogs", upload.single("image"), async (req, res) => {
   try {
-    console.log("✅ Odebrane dane:", req.body); // Dane tekstowe
-    console.log("📂 Odebrany plik:", req.file); // Dane pliku
-
     const { title, content, tags } = req.body;
+
+    console.log("✅ Odebrane dane:", req.body);
+    console.log("📂 Odebrany plik:", req.file);
 
     if (!title || !content) {
       console.warn("⚠️ Brak tytułu lub treści");
       return res.status(400).json({ message: "❌ Brak tytułu lub treści" });
     }
 
-    let parsedTags;
+    let parsedTags = [];
     try {
-      parsedTags = typeof tags === "string" ? JSON.parse(tags) : [];
+      parsedTags = Array.isArray(tags) ? tags : JSON.parse(tags);
+      if (!Array.isArray(parsedTags)) throw new Error("Tags must be an array");
     } catch (err) {
-      console.error("❌ Błąd parsowania tags:", tags);
-      return res.status(400).json({ message: "❌ Błąd w formacie tagów" });
+      console.error("❌ Błąd parsowania tags:", err.message);
+      return res.status(400).json({ message: "❌ Błąd w formacie tagów. Powinna być to tablica." });
     }
 
     const image = req.file ? `/uploads/${req.file.filename}` : null;
+
     const blog = new Blog({ title, content, image, tags: parsedTags });
-
     const savedBlog = await blog.save();
-    console.log("✅ Post zapisany:", savedBlog);
 
+    console.log("✅ Post zapisany:", savedBlog);
     res.status(201).json(savedBlog);
   } catch (err) {
     console.error("❌ Błąd podczas zapisu posta:", err);
@@ -73,45 +71,5 @@ app.post("/api/blogs", upload.single("image"), async (req, res) => {
   }
 });
 
-// ✏️ Edycja posta (z opcją zmiany obrazka)
-app.put("/api/blogs/:id", upload.single("image"), async (req, res) => {
-  try {
-    const { title, content, tags } = req.body;
-    const blog = await Blog.findById(req.params.id);
-
-    if (!blog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
-
-    // Usuwanie starego obrazka, jeśli przesłano nowy
-    if (req.file && blog.image) deleteFile(path.join(__dirname, blog.image));
-
-    blog.title = title || blog.title;
-    blog.content = content || blog.content;
-    blog.tags = tags ? JSON.parse(tags) : blog.tags;
-    blog.image = req.file ? `/uploads/${req.file.filename}` : blog.image;
-
-    const updatedBlog = await blog.save();
-    res.json(updatedBlog);
-  } catch (err) {
-    console.error("❌ Błąd edycji:", err);
-    res.status(400).json({ message: "❌ Nie udało się edytować posta" });
-  }
-});
-
-// 🗑️ Usuwanie posta (z kasowaniem obrazka)
-app.delete("/api/blogs/:id", async (req, res) => {
-  try {
-    const blog = await Blog.findById(req.params.id);
-    if (!blog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
-
-    if (blog.image) deleteFile(path.join(__dirname, blog.image));
-
-    await Blog.findByIdAndDelete(req.params.id);
-    res.json({ message: "✅ Post usunięty" });
-  } catch (err) {
-    console.error("❌ Błąd usuwania:", err);
-    res.status(500).json({ message: "❌ Nie udało się usunąć posta" });
-  }
-});
-
 // 🚀 Uruchomienie serwera
-app.listen(PORT, () => console.log(`🚀 Serwer działa`));
+app.listen(PORT, () => console.log(`🚀 Serwer działa na http://localhost:${PORT}`));

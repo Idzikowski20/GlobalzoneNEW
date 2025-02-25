@@ -17,6 +17,10 @@ const ProjectCard = ({ name, description, tags, image, source_code_link }) => (
           src={`${import.meta.env.VITE_API_URL}${image}`}
           alt={name}
           className="w-full h-full object-cover rounded-2xl"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/placeholder-image.jpg"; // Dodaj placeholder, jeśli obrazek się nie wczyta
+          }}
         />
       ) : (
         <div className="w-full h-full flex items-center justify-center bg-gray-700 text-gray-400 rounded-2xl">
@@ -27,13 +31,15 @@ const ProjectCard = ({ name, description, tags, image, source_code_link }) => (
 
     {/* Tytuł i opis */}
     <div className="mt-5">
-      <h3 className="text-white font-bold text-[24px]">{name}</h3>
-      <p className="mt-2 text-gray-300 text-[14px] line-clamp-3">{description}</p>
+      <h3 className="text-white font-bold text-[24px]">{name || "Bez tytułu"}</h3>
+      <p className="mt-2 text-gray-300 text-[14px] line-clamp-3">
+        {description || "Brak opisu dla tego posta."}
+      </p>
     </div>
 
     {/* Przycisk "Czytaj więcej" */}
     <div className="mt-4">
-      <Link to={source_code_link} className="learn-more">
+      <Link to={source_code_link || "#"} className="learn-more">
         <span className="circle" aria-hidden="true">
           <span className="icon arrow"></span>
         </span>
@@ -42,11 +48,13 @@ const ProjectCard = ({ name, description, tags, image, source_code_link }) => (
     </div>
 
     {/* Tagi */}
-    <div className="mt-4 flex flex-wrap gap-2">
-      {tags?.map((tag, i) => (
-        <p key={i} className="text-[14px] text-gray-400">#{tag}</p>
-      ))}
-    </div>
+    {tags?.length > 0 && (
+      <div className="mt-4 flex flex-wrap gap-2">
+        {tags.map((tag, i) => (
+          <p key={i} className="text-[14px] text-gray-400">#{tag}</p>
+        ))}
+      </div>
+    )}
   </Tilt>
 );
 
@@ -59,8 +67,13 @@ const Works = () => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs`);
-        console.log("✅ Odpowiedź z API:", response.data);
-        setBlogs(response.data);
+        if (Array.isArray(response.data)) {
+          console.log("✅ Odpowiedź z API:", response.data);
+          setBlogs(response.data);
+        } else {
+          console.error("❌ Odpowiedź z API nie jest tablicą:", response.data);
+          setError("Otrzymano nieprawidłowy format danych.");
+        }
       } catch (err) {
         console.error("❌ Błąd podczas pobierania blogów:", err);
         setError("Nie udało się pobrać blogów. Spróbuj ponownie później.");
@@ -94,7 +107,7 @@ const Works = () => {
             key={`project-${index}`}
             name={blog.title}
             description={blog.content}
-            tags={blog.tags || []}
+            tags={Array.isArray(blog.tags) ? blog.tags : []}
             image={blog.image}
             source_code_link={`/blog/${blog._id}`}
           />

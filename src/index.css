@@ -359,7 +359,6 @@ a {
   flex-direction: column;
   text-align: center;
   background: #0000005b;
-  backdrop-filter: blur(10px);
     border-radius: 30px;
     font-family: "IBM Plex Sans";
     font-weight: 300;
