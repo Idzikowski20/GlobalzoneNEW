@@ -40,43 +40,36 @@ const deleteFile = (filePath) => {
 app.get("/", (req, res) => res.send("Witaj na mojej aplikacji!"));
 
 // 📄 Pobieranie wszystkich blogów
-app.get("/api/blogs", async (req, res) => {
-  try {
-    const blogs = await Blog.find();
-    res.json(blogs);
-  } catch (err) {
-    res.status(500).json({ message: "❌ Błąd pobierania blogów" });
-  }
-});
-
-// 📄 Pobieranie pojedynczego bloga
-app.get("/api/blogs/:id", async (req, res) => {
-  try {
-    const blog = await Blog.findById(req.params.id);
-    if (!blog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
-    res.json(blog);
-  } catch (err) {
-    res.status(500).json({ message: "❌ Błąd pobierania posta" });
-  }
-});
-
-// 📝 Tworzenie posta (z przesyłaniem pliku)
 app.post("/api/blogs", upload.single("image"), async (req, res) => {
   try {
+    console.log("✅ Odebrane dane:", req.body); // Dane tekstowe
+    console.log("📂 Odebrany plik:", req.file); // Dane pliku
+
     const { title, content, tags } = req.body;
 
-    if (!title || !content) return res.status(400).json({ message: "❌ Brak tytułu lub treści" });
+    if (!title || !content) {
+      console.warn("⚠️ Brak tytułu lub treści");
+      return res.status(400).json({ message: "❌ Brak tytułu lub treści" });
+    }
 
-    const parsedTags = typeof tags === "string" ? JSON.parse(tags) : [];
+    let parsedTags;
+    try {
+      parsedTags = typeof tags === "string" ? JSON.parse(tags) : [];
+    } catch (err) {
+      console.error("❌ Błąd parsowania tags:", tags);
+      return res.status(400).json({ message: "❌ Błąd w formacie tagów" });
+    }
+
     const image = req.file ? `/uploads/${req.file.filename}` : null;
-
     const blog = new Blog({ title, content, image, tags: parsedTags });
+
     const savedBlog = await blog.save();
+    console.log("✅ Post zapisany:", savedBlog);
 
     res.status(201).json(savedBlog);
   } catch (err) {
-    console.error("❌ Błąd tworzenia posta:", err);
-    res.status(400).json({ message: "❌ Nie udało się utworzyć posta" });
+    console.error("❌ Błąd podczas zapisu posta:", err);
+    res.status(500).json({ message: "❌ Błąd serwera - nie udało się utworzyć posta" });
   }
 });
 

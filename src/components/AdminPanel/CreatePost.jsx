@@ -13,6 +13,7 @@ const CreatePost = () => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
+    console.log("➡️ Wysyłane dane:", { title, content, tags: tagsArray, imageFile });
   
     const tagsArray = tags.split(",").map((tag) => tag.trim()).filter((tag) => tag !== "");
   
