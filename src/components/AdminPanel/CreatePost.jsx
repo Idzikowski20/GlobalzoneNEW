@@ -4,74 +4,103 @@ import axios from "axios";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState("");
+  const [imageFile, setImageFile] = useState(null); // ⬅️ Plik obrazu
   const [tags, setTags] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Przekształcamy tagi na tablicę, usuwamy nadmiarowe spacje
-    const tagsArray = tags.split(",").map((t) => t.trim()).filter(t => t !== "");
+    setLoading(true);
+    setMessage("");
+  
+    const tagsArray = tags.split(",").map((tag) => tag.trim()).filter((tag) => tag !== "");
+  
     try {
-      // Wysyłamy dane do backendu
-      const response = await axios.post("http://localhost:5000/api/blogs", {
-        title,
-        content,
-        image,
-        tags: tagsArray,  // Tagi są teraz tablicą
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", content);
+      formData.append("tags", JSON.stringify(tagsArray)); // ✅ Stringify tags
+      if (imageFile) formData.append("image", imageFile); // ✅ Plik z nazwą "image"
+  
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/blogs`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      setMessage("Post utworzony pomyślnie!");
-      // Opcjonalnie wyczyść formularz
+  
+      setMessage("✅ Post utworzony pomyślnie!");
       setTitle("");
       setContent("");
-      setImage("");
+      setImageFile(null);
       setTags("");
     } catch (error) {
-      console.error("Błąd tworzenia posta:", error);
-      setMessage("Wystąpił błąd podczas tworzenia posta");
+      console.error("❌ Błąd tworzenia posta:", error.response?.data || error.message);
+      setMessage(`❌ Wystąpił błąd: ${error.response?.data?.message || "Spróbuj ponownie"}`);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="admin-panel">
-      <h2>Panel Administracyjny - Utwórz nowy post</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="admin-panel max-w-2xl mx-auto p-6 text-white">
+      <h2 className="text-2xl font-bold mb-6 text-center">📝 Utwórz nowy post</h2>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label>Tytuł:</label>
+          <label className="block text-lg font-medium mb-1">Tytuł:</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className="w-full p-2 rounded bg-gray-700 text-white"
+            placeholder="Wprowadź tytuł posta"
             required
           />
         </div>
+
         <div>
-          <label>Treść:</label>
+          <label className="block text-lg font-medium mb-1">Treść:</label>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            className="w-full p-2 rounded bg-gray-700 text-white h-40 resize-none"
+            placeholder="Wprowadź treść posta"
             required
           />
         </div>
+
         <div>
-          <label>Obrazek (URL):</label>
+          <label className="block text-lg font-medium mb-1">Obrazek (plik):</label>
           <input
-            type="text"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImageFile(e.target.files[0])}
+            className="w-full p-2 rounded bg-gray-700 text-white"
           />
         </div>
+
         <div>
-          <label>Tagi (oddzielone przecinkami):</label>
+          <label className="block text-lg font-medium mb-1">Tagi (oddzielone przecinkami):</label>
           <input
             type="text"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
+            className="w-full p-2 rounded bg-gray-700 text-white"
+            placeholder="np. technologia, blog, nowości"
           />
         </div>
-        <button type="submit">Utwórz post</button>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className={`w-full py-2 rounded-lg font-semibold transition ${
+            loading ? "bg-gray-500 cursor-not-allowed" : "bg-secondary hover:bg-secondary-dark"
+          }`}
+        >
+          {loading ? "Tworzenie..." : "Utwórz post"}
+        </button>
       </form>
-      {message && <p>{message}</p>}
+
+      {message && <p className="mt-4 text-center text-lg font-semibold">{message}</p>}
     </div>
   );
 };

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div>
       <div className='footer-container'>
       <div className='footer-logo-container'>
           <img src={logo} alt='logo' className='w-40 h-40 object-contain' />
@@ -41,7 +40,6 @@ const Footer = () => {
         </div>
         </div>
       </div>
-    </div>
   )
 }
 

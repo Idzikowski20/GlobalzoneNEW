@@ -5,6 +5,8 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import BlogDetail from "./components/BlogDetail/BlogDetail";
 import AdminPanel from "./components/AdminPanel/AdminPanel";  
 import CreatePost from "./components/AdminPanel/CreatePost";  
+import Navbar2 from "./components/HomePage/Navbar2";
+import Footer from "./components/HomePage/Footer";
 const App = () => {
   const cursorRef = useRef(null);
     const cursor2Ref = useRef(null);
@@ -54,8 +56,9 @@ const App = () => {
     }, []);
   return (
     <>
+    <Navbar2/>
       <div className='selector relative z-0 bg-primary-dark'></div>
-      <div className="bg-parallax bluur-70"></div>
+      <div className="bg-parallax bluur-70 z-index-1"></div>
       <div className='cursor' ref={cursorRef} id="cursor"></div>
       <div className='cursor2' ref={cursor2Ref} id="cursor2"></div>
       <div className='cursor3' ref={cursor3Ref} id="cursor3"></div>
@@ -67,6 +70,7 @@ const App = () => {
         <Route path="/AdminPanel" element={<AdminPanel />} />
         <Route path="/CreatePost" element={<CreatePost />} /> 
       </Routes>
+      <Footer/>
     </Router>
     </>
   );

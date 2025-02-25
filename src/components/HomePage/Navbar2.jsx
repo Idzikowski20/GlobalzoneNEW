@@ -69,7 +69,7 @@ const Navbar2 = () => {
             {[
               { id: "home", label: "Strona główna" },
               { id: "products", label: "Produkty" },
-              { id: "news", label: "Wiadomości" },
+              { id: "news", label: "Blog" },
               { id: "management", label: "Zarząd" },
               { id: "Kontakt", label: "Kontakt" }
             ].map(({ id, label }) => (
