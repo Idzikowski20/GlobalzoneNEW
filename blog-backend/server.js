@@ -1,75 +1,101 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const Blog = require("./models/Blog");
 const cors = require("cors");
 const multer = require("multer");
-const path = require("path");
-const fs = require("fs");
+const { v2: cloudinary } = require("cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Udostępnianie folderu 'uploads'
-
-// Połączenie z MongoDB
-mongoose.connect("mongodb+srv://Admin:Globalzone123@cluster0.hcrga.mongodb.net/blogDB?retryWrites=true&w=majority", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+// 🌩️ Konfiguracja Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-mongoose.connection.once("open", () => console.log("✅ Połączono z MongoDB")).on("error", console.error);
 
-// Konfiguracja multer - zapis plików
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
+// 🗂️ Konfiguracja Multer + Cloudinary
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "blogs", // 📁 Folder w Cloudinary
+    allowed_formats: ["jpg", "jpeg", "png", "webp"],
+    transformation: [{ width: 800, height: 600, crop: "limit" }], // Opcjonalne: skalowanie
   },
 });
+
 const upload = multer({ storage });
 
-// 🔥 Usuwanie pliku
-const deleteFile = (filePath) => {
-  if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-};
+// 🛡️ Middleware
+app.use(cors());
+app.use(express.json());
 
-// 📝 Tworzenie posta (z przesyłaniem pliku)
+// 📄 Pobieranie wszystkich blogów
+app.get("/api/blogs", async (req, res) => {
+  try {
+    const blogs = await Blog.find();
+    res.json(blogs);
+  } catch (err) {
+    console.error("❌ Błąd pobierania blogów:", err);
+    res.status(500).json({ message: "❌ Wewnętrzny błąd serwera" });
+  }
+});
+
+// 📝 Tworzenie posta z przesyłaniem pliku do Cloudinary
 app.post("/api/blogs", upload.single("image"), async (req, res) => {
   try {
     const { title, content, tags } = req.body;
 
-    console.log("✅ Odebrane dane:", req.body);
-    console.log("📂 Odebrany plik:", req.file);
-
     if (!title || !content) {
-      console.warn("⚠️ Brak tytułu lub treści");
       return res.status(400).json({ message: "❌ Brak tytułu lub treści" });
     }
 
-    let parsedTags = [];
-    try {
-      parsedTags = Array.isArray(tags) ? tags : JSON.parse(tags);
-      if (!Array.isArray(parsedTags)) throw new Error("Tags must be an array");
-    } catch (err) {
-      console.error("❌ Błąd parsowania tags:", err.message);
-      return res.status(400).json({ message: "❌ Błąd w formacie tagów. Powinna być to tablica." });
-    }
+    const parsedTags = tags ? JSON.parse(tags) : [];
 
-    const image = req.file ? `/uploads/${req.file.filename}` : null;
+    const imageUrl = req.file ? req.file.path : null; // Cloudinary zwraca URL obrazu
 
-    const blog = new Blog({ title, content, image, tags: parsedTags });
+    const blog = new Blog({ title, content, image: imageUrl, tags: parsedTags });
     const savedBlog = await blog.save();
 
-    console.log("✅ Post zapisany:", savedBlog);
     res.status(201).json(savedBlog);
   } catch (err) {
-    console.error("❌ Błąd podczas zapisu posta:", err);
-    res.status(500).json({ message: "❌ Błąd serwera - nie udało się utworzyć posta" });
+    console.error("❌ Błąd tworzenia posta:", err);
+    res.status(500).json({ message: "❌ Wewnętrzny błąd serwera" });
   }
 });
 
-// 🚀 Uruchomienie serwera
-app.listen(PORT, () => console.log(`🚀 Serwer działa na http://localhost:${PORT}`));
+// 🗑️ Usuwanie posta i pliku z Cloudinary
+app.delete("/api/blogs/:id", async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
+
+    // 🧹 Usuwanie obrazu z Cloudinary
+    if (blog.image) {
+      const publicId = blog.image.split("/").pop().split(".")[0]; // Pobiera public_id z URL
+      await cloudinary.uploader.destroy(`blogs/${publicId}`).catch(() => {
+        console.warn("⚠️ Nie znaleziono obrazu w Cloudinary");
+      });
+    }
+
+    await Blog.findByIdAndDelete(req.params.id);
+    res.json({ message: "✅ Post usunięty" });
+  } catch (err) {
+    console.error("❌ Błąd usuwania:", err);
+    res.status(500).json({ message: "❌ Wewnętrzny błąd serwera" });
+  }
+});
+
+// 🚀 Połączenie z MongoDB i uruchomienie serwera
+mongoose.connect("mongodb+srv://Admin:Globalzone123@cluster0.hcrga.mongodb.net/blogDB?retryWrites=true&w=majority", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log("✅ Połączono z MongoDB");
+    app.listen(PORT, () => console.log(`🚀 Serwer działa`));
+  })
+  .catch(err => console.error("❌ Błąd połączenia z MongoDB:", err));
