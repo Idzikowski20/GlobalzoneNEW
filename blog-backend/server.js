@@ -4,6 +4,7 @@ const Blog = require("./models/Blog");
 const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 const PORT = 5000;
@@ -11,94 +12,113 @@ const PORT = 5000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-
-// Udostępnianie folderu 'uploads' do podglądu zdjęć
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Udostępnianie folderu 'uploads'
 
 // Połączenie z MongoDB
 mongoose.connect("mongodb+srv://Admin:Globalzone123@cluster0.hcrga.mongodb.net/blogDB?retryWrites=true&w=majority", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
+mongoose.connection.once("open", () => console.log("✅ Połączono z MongoDB")).on("error", console.error);
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "❌ Błąd połączenia z MongoDB:"));
-db.once("open", () => console.log("✅ Połączono z MongoDB"));
-
-// Konfiguracja multer - zapis plików w folderze uploads
+// Konfiguracja multer - zapis plików
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "uploads/"),
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
-    const ext = path.extname(file.originalname);
-    cb(null, `${file.fieldname}-${uniqueSuffix}${ext}`);
-  }
+    cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
+  },
 });
-
 const upload = multer({ storage });
 
-// Strona powitalna
-app.get('/', (req, res) => {
-  res.send('Witaj na mojej aplikacji!');
-});
+// 🔥 Usuwanie pliku
+const deleteFile = (filePath) => {
+  if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+};
 
-// Pobieranie wszystkich blogów
+// 🌍 Strona główna
+app.get("/", (req, res) => res.send("Witaj na mojej aplikacji!"));
+
+// 📄 Pobieranie wszystkich blogów
 app.get("/api/blogs", async (req, res) => {
   try {
     const blogs = await Blog.find();
     res.json(blogs);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (err) {
+    res.status(500).json({ message: "❌ Błąd pobierania blogów" });
   }
 });
 
-// Pobieranie pojedynczego bloga
+// 📄 Pobieranie pojedynczego bloga
 app.get("/api/blogs/:id", async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
     if (!blog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
     res.json(blog);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (err) {
+    res.status(500).json({ message: "❌ Błąd pobierania posta" });
   }
 });
 
-// ✅ Tworzenie nowego posta z przesyłaniem pliku
+// 📝 Tworzenie posta (z przesyłaniem pliku)
 app.post("/api/blogs", upload.single("image"), async (req, res) => {
-  const { title, content, tags } = req.body;
-  const image = req.file ? `/uploads/${req.file.filename}` : null; // Ścieżka do zapisanego pliku
-
-  const blog = new Blog({ title, content, image, tags: JSON.parse(tags) });
-
   try {
+    const { title, content, tags } = req.body;
+
+    if (!title || !content) return res.status(400).json({ message: "❌ Brak tytułu lub treści" });
+
+    const parsedTags = typeof tags === "string" ? JSON.parse(tags) : [];
+    const image = req.file ? `/uploads/${req.file.filename}` : null;
+
+    const blog = new Blog({ title, content, image, tags: parsedTags });
     const savedBlog = await blog.save();
+
     res.status(201).json(savedBlog);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+  } catch (err) {
+    console.error("❌ Błąd tworzenia posta:", err);
+    res.status(400).json({ message: "❌ Nie udało się utworzyć posta" });
   }
 });
 
-// Edycja posta
-app.put("/api/blogs/:id", async (req, res) => {
+// ✏️ Edycja posta (z opcją zmiany obrazka)
+app.put("/api/blogs/:id", upload.single("image"), async (req, res) => {
   try {
-    const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedBlog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
+    const { title, content, tags } = req.body;
+    const blog = await Blog.findById(req.params.id);
+
+    if (!blog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
+
+    // Usuwanie starego obrazka, jeśli przesłano nowy
+    if (req.file && blog.image) deleteFile(path.join(__dirname, blog.image));
+
+    blog.title = title || blog.title;
+    blog.content = content || blog.content;
+    blog.tags = tags ? JSON.parse(tags) : blog.tags;
+    blog.image = req.file ? `/uploads/${req.file.filename}` : blog.image;
+
+    const updatedBlog = await blog.save();
     res.json(updatedBlog);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+  } catch (err) {
+    console.error("❌ Błąd edycji:", err);
+    res.status(400).json({ message: "❌ Nie udało się edytować posta" });
   }
 });
 
-// Usuwanie posta
+// 🗑️ Usuwanie posta (z kasowaniem obrazka)
 app.delete("/api/blogs/:id", async (req, res) => {
   try {
-    const deletedBlog = await Blog.findByIdAndDelete(req.params.id);
-    if (!deletedBlog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
+
+    if (blog.image) deleteFile(path.join(__dirname, blog.image));
+
+    await Blog.findByIdAndDelete(req.params.id);
     res.json({ message: "✅ Post usunięty" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (err) {
+    console.error("❌ Błąd usuwania:", err);
+    res.status(500).json({ message: "❌ Nie udało się usunąć posta" });
   }
 });
 
-// Uruchomienie serwera
+// 🚀 Uruchomienie serwera
 app.listen(PORT, () => console.log(`🚀 Serwer działa`));
