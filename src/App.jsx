@@ -57,7 +57,6 @@ const App = () => {
   return (
     <>
     <Navbar2/>
-      <div className='selector relative z-0 bg-primary-dark'></div>
       <div className="bg-parallax bluur-70 z-index-1"></div>
       <div className='cursor' ref={cursorRef} id="cursor"></div>
       <div className='cursor2' ref={cursor2Ref} id="cursor2"></div>

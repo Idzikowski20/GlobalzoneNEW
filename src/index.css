@@ -902,7 +902,7 @@ display: none;
 
 .bg-primary-dark {
   backdrop-filter: blur(10px);
-    background: #070a18d6;
+    background: #070a184d;
     --tw-bg-opacity: 1;
 }
 
@@ -2074,7 +2074,7 @@ background: #000;
   min-height: 270px;
   max-width: 500px;
   min-height: 400px;
-  max-height: 500px;
+  max-height: 550px;
   height: 100%;
   padding: 1.25rem;
   border-radius: 1rem;

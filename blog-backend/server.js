@@ -23,28 +23,54 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "blogs", // 📁 Folder w Cloudinary
     allowed_formats: ["jpg", "jpeg", "png", "webp"],
-    transformation: [{ width: 800, height: 600, crop: "limit" }], // Opcjonalne: skalowanie
+    transformation: [{ width: 800, height: 600, crop: "limit" }],
   },
 });
 
 const upload = multer({ storage });
 
 // 🛡️ Middleware
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
+
+// 🌍 Sprawdzenie działania serwera
+app.get("/", (req, res) => {
+  res.send("✅ Serwer działa! Sprawdź dostępne endpointy w dokumentacji.");
+});
 
 // 📄 Pobieranie wszystkich blogów
 app.get("/api/blogs", async (req, res) => {
   try {
-    const blogs = await Blog.find();
+    const blogs = await Blog.find().sort({ createdAt: -1 });
     res.json(blogs);
   } catch (err) {
     console.error("❌ Błąd pobierania blogów:", err);
-    res.status(500).json({ message: "❌ Wewnętrzny błąd serwera" });
+    res.status(500).json({ message: "❌ Błąd serwera podczas pobierania blogów" });
   }
 });
 
-// 📝 Tworzenie posta z przesyłaniem pliku do Cloudinary
+// 📄 Pobieranie pojedynczego bloga po ID
+app.get("/api/blogs/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "❌ Nieprawidłowy format ID." });
+    }
+
+    const blog = await Blog.findById(id);
+    if (!blog) {
+      return res.status(404).json({ message: "❌ Post nie znaleziony" });
+    }
+
+    res.json(blog);
+  } catch (error) {
+    console.error("❌ Błąd pobierania posta:", error);
+    res.status(500).json({ message: "❌ Błąd serwera podczas pobierania posta" });
+  }
+});
+
+// 📝 Tworzenie nowego posta
 app.post("/api/blogs", upload.single("image"), async (req, res) => {
   try {
     const { title, content, tags } = req.body;
@@ -54,7 +80,6 @@ app.post("/api/blogs", upload.single("image"), async (req, res) => {
     }
 
     const parsedTags = tags ? JSON.parse(tags) : [];
-
     const imageUrl = req.file ? req.file.path : null; // Cloudinary zwraca URL obrazu
 
     const blog = new Blog({ title, content, image: imageUrl, tags: parsedTags });
@@ -70,32 +95,40 @@ app.post("/api/blogs", upload.single("image"), async (req, res) => {
 // 🗑️ Usuwanie posta i pliku z Cloudinary
 app.delete("/api/blogs/:id", async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.id);
-    if (!blog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
+    const { id } = req.params;
 
-    // 🧹 Usuwanie obrazu z Cloudinary
-    if (blog.image) {
-      const publicId = blog.image.split("/").pop().split(".")[0]; // Pobiera public_id z URL
-      await cloudinary.uploader.destroy(`blogs/${publicId}`).catch(() => {
-        console.warn("⚠️ Nie znaleziono obrazu w Cloudinary");
-      });
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "❌ Nieprawidłowy format ID." });
     }
 
-    await Blog.findByIdAndDelete(req.params.id);
+    const blog = await Blog.findById(id);
+    if (!blog) return res.status(404).json({ message: "❌ Post nie znaleziony" });
+
+    // 🧹 Usuwanie obrazu z Cloudinary, jeśli istnieje
+    if (blog.image) {
+      const publicId = blog.image.split("/").pop().split(".")[0];
+      try {
+        await cloudinary.uploader.destroy(`blogs/${publicId}`);
+      } catch (err) {
+        console.warn("⚠️ Nie udało się usunąć obrazu z Cloudinary:", err);
+      }
+    }
+
+    await Blog.findByIdAndDelete(id);
     res.json({ message: "✅ Post usunięty" });
   } catch (err) {
-    console.error("❌ Błąd usuwania:", err);
+    console.error("❌ Błąd usuwania posta:", err);
     res.status(500).json({ message: "❌ Wewnętrzny błąd serwera" });
   }
 });
 
 // 🚀 Połączenie z MongoDB i uruchomienie serwera
-mongoose.connect("mongodb+srv://Admin:Globalzone123@cluster0.hcrga.mongodb.net/blogDB?retryWrites=true&w=majority", {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
   .then(() => {
     console.log("✅ Połączono z MongoDB");
-    app.listen(PORT, () => console.log(`🚀 Serwer działa`));
+    app.listen(PORT, () => console.log(`🚀 Serwer działa na porcie ${PORT}`));
   })
   .catch(err => console.error("❌ Błąd połączenia z MongoDB:", err));
