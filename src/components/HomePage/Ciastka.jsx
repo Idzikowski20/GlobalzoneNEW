@@ -10,8 +10,6 @@ import cookies8 from '../../assets/Slajd 8.webp'
 import cookies9 from '../../assets/Slajd 9.webp'
 import cookies10 from '../../assets/Slajd 10.webp'
 import cookies11 from '../../assets/Slajd 11.webp'
-import cookies12 from '../../assets/Slajd 12.webp'
-import cookies13 from '../../assets/Slajd 13.webp'
 import cookies14 from '../../assets/Slajd 14.webp'
 import "react-vertical-timeline-component/style.min.css";
 import 'animate.css';
@@ -45,7 +43,7 @@ const Tech = () => {
       </div>
 
       <div className={`${active ? "open-container" : "hidden-container"}`}>
-        {[cookies4,cookies5,cookies6,cookies7,cookies8,cookies9,cookies10,cookies11,cookies12,cookies13,cookies14].map(
+        {[cookies4,cookies5,cookies6,cookies7,cookies8,cookies9,cookies10,cookies11,cookies14].map(
           (image, index) => (
             <div key={index} className="brykiet-card mx-auto">
               <img

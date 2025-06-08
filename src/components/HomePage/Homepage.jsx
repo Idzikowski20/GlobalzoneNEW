@@ -1,7 +1,6 @@
 import { About, Contact, Experience, Hero, StarsCanvas, Team, Cards, Blog } from "./";
 import React, { useEffect, useRef } from 'react';
 import Footer from "./Footer";
-import Navbar2 from "./Navbar2";
 
 const HomePage = () => {
   const cursorRef = useRef(null);
@@ -53,8 +52,6 @@ const HomePage = () => {
 
   return (
     <div className='selector relative z-0 bg-primary-dark'>
-      {/* <Navbar /> */}
-      <Navbar2 />
       <Hero />
       <Experience />
       <About />

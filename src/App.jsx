@@ -6,7 +6,6 @@ import BlogDetail from "./components/BlogDetail/BlogDetail";
 import AdminPanel from "./components/AdminPanel/AdminPanel";  
 import CreatePost from "./components/AdminPanel/CreatePost";  
 import Navbar2 from "./components/HomePage/Navbar2";
-import Footer from "./components/HomePage/Footer";
 const App = () => {
   const cursorRef = useRef(null);
     const cursor2Ref = useRef(null);
@@ -69,7 +68,6 @@ const App = () => {
         <Route path="/AdminPanel" element={<AdminPanel />} />
         <Route path="/CreatePost" element={<CreatePost />} /> 
       </Routes>
-      <Footer/>
     </Router>
     </>
   );
